@@ -1,0 +1,118 @@
+#tagline{
+  float:left;
+  font-family: "Times New Roman", Times, serif;
+  font-size:20px;
+}
+#toplist{
+  display:inline-block;
+  float:right;
+  margin-right: 50px;
+} 
+#toplist li{
+  padding:5px;
+  color:#FF66CC ;
+}
+#topNav{
+  /*border:solid 1px #FF66CC;*/
+  background-color: #FF66CC;
+} 
+#titleNav{
+  /*border:solid 1px black;*/
+}
+.clear{
+  clear:both;
+}
+#title{
+  float:left;
+  color:#FF66CC;
+  font-size: 60px;
+  font-style:italic;
+  font-weight:bold;
+}
+#image1{
+  display:inline-block;
+  float:right;
+  margin-right: 400px;
+}
+
+  #menulist{
+    display:inline;
+  }
+  #closet 
+  { 
+    float:left; 
+    width: 500px;
+    margin-right: 2em;
+  }
+  #catalog{
+    border:solid 10px #FF9900;
+    border-style: ridge;
+    border-radius: 15px;
+  }
+  #add_new{
+  	border:3px #AEB0B5 solid;
+  	margin:5px;
+    h2{
+      background-color: #AEB0B5;
+    }
+    border-radius:10px;
+    border-style: ridge;
+    line-height: 200%;
+  }
+  #canvas 
+  { width: 400px;
+    height:600px; 
+    float: left; 
+  }
+  /* style the list to maximize the droppable hitarea */
+  #canvas ol { 
+    margin: 0; 
+    padding: 1em 0 1em 3em; 
+  }
+  #outfit {
+  	width: 400px;
+    height:500px; 
+    border:solid 10px #FF9900;
+    border-style:ridge;
+    border-radius: 15px;
+  }
+  #outfit_list{
+  	width: 350px;
+    height:450px; 
+    border: 1px #AAAAAA solid;
+  }
+  #submit{
+  	float: right;
+  	height:50px;
+  	width:100%;
+  	font-size:20px;
+  	background-color:#FF66CC;
+    border-radius: 15px;
+    color:white;
+    font-size: 30px;
+  }
+  #recent-outfit{
+    h2{
+      background-color: #AEB0B5; 
+    }
+    float:left;
+    margin-left: 30px;
+    width: 400px;
+    height:500px; 
+  }
+  #clear{
+    clear:both;
+  }
+  li {
+list-style-type:none;
+display:inline;
+}
+.item-name{
+  display: inline-block;
+}
+#recent-outfitlist
+{
+  border: 5px #FF9900 solid; 
+  border-style: ridge;
+  padding-left: 20px;
+}

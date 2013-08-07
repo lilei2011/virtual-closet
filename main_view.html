@@ -1,0 +1,185 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Virtual Closet</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  
+  <style>
+  h1 { padding: .2em; margin: 0; }
+  #closet { float:left; width: 500px; margin-right: 2em; }
+  #add_new{
+  	border:1px blue solid;
+  	margin:5px;
+  }
+  #canvas 
+  { width: 400px;
+    height:600px; 
+    float: left; 
+    margin-top: 1em; }
+  /* style the list to maximize the droppable hitarea */
+  #canvas ol { margin: 0; padding: 1em 0 1em 3em; }
+  #outfit {
+  	width: 400px;
+    height:500px; 
+  }
+  #outfit_list{
+  	width: 350px;
+    height:450px; 
+    border: 1px black solid;
+  }
+  #submit{
+  	float: right;
+  	height:50px;
+  	width:100%;
+  	font-size:20px;
+  	background-color:purple;
+  }
+  </style>
+  <script>
+  $(function() {
+    $( "#catalog" ).tabs();
+    $( "#catalog li" ).draggable({
+      
+      helper: "clone"
+    });
+    $( "#canvas ol" ).droppable({
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      accept: ":not(.ui-sortable-helper)",
+      drop: function( event, ui ) {
+        
+        $( this ).find( ".placeholder" ).remove();
+        $( "<li></li>" ).html( ui.draggable.html() ).appendTo( this );
+        console.log(ui.draggable)
+        img = ui.draggable.context.firstChild
+        img_attr = img.attributes
+        img_src = img_attr.src.nodeValue
+        img_name = img_attr.name.nodeValue
+        $('<input>').attr({
+          type: 'hidden',
+          value: img_name,
+          name:  "outfit[image]"
+        }).appendTo('#canvas form');
+        
+      }
+    }).sortable({
+      items: "li:not(.placeholder)",
+      sort: function() {
+        // gets added unintentionally by droppable interacting with sortable
+        // using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
+        $( this ).removeClass( "ui-state-default" );
+      }
+    });
+  });
+  </script>
+</head>
+<body>
+ <?php
+ echo "<pre>";
+  var_dump($this->session->userdata('user_session')->email);
+  echo "</pre>";
+  //echo "welcome back!";
+
+
+ ?>
+<div id="closet">
+  <h1 class="ui-widget-header">Lei's Closet</h1>
+  <div id="catalog">
+    <ul>
+      <li><a href='#tab1'>Top</a></li>
+      <li><a href='#tab2'>Bottom</a></li>
+      <li><a href='#tab3'>Shoes</a></li>
+      <li><a href='#tab4'>Others</a></li>
+    </ul>
+    
+    <div id="tab1"> 
+      <ul>
+      <?php
+      //var_dump($clothes);
+      foreach($clothes as $item)
+      {
+        if($item->category=='Top')
+        { 
+          echo"<li><img width='100px' name='".$item->name."' src='".$item->source."'></li>";  
+        }
+      }
+      echo "</ul>
+    </div>
+    <div id='tab2'>
+      <ul>";
+
+        foreach($clothes as $item)
+      {
+        if($item->category=='Bottom')
+        { 
+          echo"<li><img width='100px' name='".$item->name."' src='".$item->source."'></li>";  
+        }
+      }
+    echo "</ul>
+     </div>
+    <div id='tab3'>
+      <ul>";
+
+        foreach($clothes as $item)
+      {
+        if($item->category=='Shoes')
+        { 
+          echo"<li><img width='100px' name='".$item->name."' src='".$item->source."'></li>";  
+        }
+      }
+      echo "</ul>
+     </div>   
+    <div id='tab4'>
+      <ul>";
+        
+         foreach($clothes as $item)
+      {
+        if($item->category=='Others')
+        { 
+          echo"<li><img width='100px' name='".$item->name."' src='".$item->source."'></li>";  
+        }
+      }
+    
+      echo "</ul>
+     </div>";//end of tab4
+  ?>   
+  </div><!--end of catalog -->
+
+  <div id="add_new">
+  	<h2>Add new Items</h2>
+  	<form action="/main/add_Item" method="post">
+  		<label>Category</label>
+  		<select>
+  			<option>Top</option>
+  			<option>Bottom</option>
+  			<option>Shoes</option>
+  			<option>Others</option>
+  		</select><br>
+  		<label>Item Name</label>
+  		<input type="text" name="name"><br>
+  		
+		<input type="file" name="file" id="file"><br>
+		<input type="submit" name="submit" value="Submit">
+  	</form>
+  </div><!--end of add_new -->
+</div><!--end of closet-->
+ 
+<div id="canvas">
+  <h1 class="ui-widget-header">Outfit Canvas</h1>
+  <div id="outfit">
+    <ol id="outfit_list">
+      <li class="placeholder">Add your clothes here</li>
+    </ol>
+    <form action="process.php" method="post">
+      <input id="submit" type="submit" value="Save" name="submit">
+    </form>
+  </div>
+</div>
+ 
+ 
+</body>
+</html>

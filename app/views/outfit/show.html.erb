@@ -1,0 +1,13 @@
+<h1>Outfit: <%=@Outfit.name%></h1>
+<ul>
+<% @outfitItems.each do |o| %>
+	<!--<%= o.item_id%>-->
+	
+	<li>
+		<div class="item-name">
+			<h3><%= o.item.category.name %></h3>
+			<%=  image_tag(o.item.pic.url, width:"100")%>
+		</div>
+	</li>
+	<% end %>
+</ul>

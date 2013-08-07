@@ -1,0 +1,130 @@
+<div id="topNav">
+    <p id="tagline">Create your personal closet online and share with friends!</p>
+    <ul id="toplist">
+      <li><a href=#>My account</a></li>
+      <li><a href=#>Log out</a></li>
+    </ul>    
+</div>
+<div class="clear"></div>
+<div id="titleNav">
+  <p id="title">Virtual Closet</p>
+  <p id="image1"><%=  image_tag("outfits.jpg", width:"400")%></p>
+</div>
+<div class="clear"></div>
+<!--<%= @current_user.id %>-->
+
+<div id="closet">
+
+  <h2 class="ui-widget-header">Lei's Closet</h2>
+  
+  <div id="catalog">
+    <ul >
+      <li><a href='#tab1'>Top</a></li>
+      <li><a href='#tab2'>Bottom</a></li>
+      <li><a href='#tab3'>Shoes</a></li>
+      <li><a href='#tab4'>Others</a></li>
+    </ul>
+    
+    <div id="tab1"> 
+      <ul type=none>
+        <% @items.each do |item| %>
+          <% if item.category_id==1 %>
+            <li><span id="<%= item.id %>"></span><%=  image_tag(item.pic.url, width:"100")%></li>
+
+          <%  end %>
+        <% end %>
+
+      </ul>
+    </div>
+
+    <div id='tab2'>
+      <ul type=none>
+        <% @items.each do |item| %>
+          <% if item.category_id==2 %>
+            <li><span id="<%= item.id %>"></span><%= image_tag(item.pic.url, width:"100") %></li>
+          <%  end %>
+        <% end %>
+    </ul>
+    </div>
+
+    <div id='tab3'>
+      <ul type=none>
+        <% @items.each do |item| %>
+          <% if item.category_id==3 %>
+            <li><span id="<%= item.id %>"></span><%= image_tag(item.pic.url, width:"100") %></li>
+          <%  end %>
+        <% end %>
+    </ul>
+    </div>   
+
+    <div id='tab4'>
+      <ul type=none>
+        <% @items.each do |item| %>
+          <% if item.category_id==4 %>
+            <li><span id="<%= item.id %>"></span><%= image_tag(item.pic.url, width:"100") %></li>
+          <%  end %>
+        <% end %>
+    </ul>
+    </div>
+     
+  </div><!--end of catalog -->
+
+  <div id="add_new">
+  	<h2 class="ui-widget-header">Add new Items</h2>
+    <!--
+  	<form action="/closet/create" method="post">
+      <label>Item Name</label>
+      <input type="text" name="name"><br>
+  		<label>Category</label>
+  		<select>
+  			<option>Top</option>
+  			<option>Bottom</option>
+  			<option>Shoes</option>
+  			<option>Others</option>
+  		</select><br> 		
+		<input type="file" name="file" id="file"><br>
+		<input type="submit" name="submit" value="Submit">
+  	</form>
+-->
+    <div id="addForm">
+      <%= simple_form_for @item, :html=>{:multipart=>true} do |i| %>
+        <%= i.hidden_field :user_id, :value=>@current_user.id %>
+        <%= i.file_field :pic %>
+        <%= i.input :name, label:'Item name' %>
+        <%= i.association :category  %>  
+        <%= i.submit %>
+      <% end %>
+    </div><!--end of addForm -->
+  </div><!--end of add_new -->
+</div><!--end of closet-->
+ 
+<div id="canvas">
+  <h2 class="ui-widget-header">Outfit Canvas</h2>
+  <div id="outfit">
+    <ol type=none id="outfit_list">
+      <li class="placeholder">Add your clothes here</li>
+    </ol>
+    <form action="/outfit" method="post">
+      <div id="o_name">
+        <label for="name">Outfit Name</label>
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+        <input type="hidden" name="outfit[user_id]" value="<%= @current_user.id %>" />
+        <input type="text" name="outfit[name]">
+        <input id="save" type="submit" value="Save" name="submit">
+      </div>
+      <button id="submit" type="button">Add Outfit</button>
+    </form>
+  </div>
+</div>
+  <div id="recent-outfit">
+    <h2 class="ui-widget-header">Recent Outfit</h2>
+    <div id="recent-outfitlist">
+      <% @outfits.each do |f| %>
+        <p><%= link_to f.name, outfit_path(f.id) %></p>
+      <% end %>
+    </div>
+  </div>
+<div id="clear"></div>
+
+
+
