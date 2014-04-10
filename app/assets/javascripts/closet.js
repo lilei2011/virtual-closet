@@ -13,7 +13,8 @@ $(document).ready(function() {
 
     $( "#catalog li" ).draggable({
       
-      helper: "clone"
+      helper: "clone",
+      cursorAt: {top:50, left:50}
     });
     $( "#canvas ol" ).droppable({
       activeClass: "ui-state-default",

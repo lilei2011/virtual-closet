@@ -1,21 +1,30 @@
-<div id="topNav">
-    <p id="tagline">Create your personal closet online and share with friends!</p>
-    <ul id="toplist">
+
+  <div id="topNav">
+  <div id="intro">Create your daily outfit and share with friends!</div>
+  <ul>
       <li><a href=#>My account</a></li>
       <li><a href=#>Log out</a></li>
-    </ul>    
+  </ul> 
 </div>
 <div class="clear"></div>
 <div id="titleNav">
-  <p id="title">Virtual Closet</p>
-  <p id="image1"><%=  image_tag("outfits.jpg", width:"400")%></p>
+  <ul>
+    <li id="title">Virtual Closet</li> 
+    <li id="image1"><%=  image_tag("outfits.jpg", width:"400")%></li>
+  </ul>
+  <p id="desc"> Drag multiple items from the closet to the center canvas,</br> and click save button to save the outfit</p>
+   
 </div>
 <div class="clear"></div>
-<!--<%= @current_user.id %>-->
+
+
+
+
+<!--<%= @current_user.id %> -->
 
 <div id="closet">
 
-  <h2 class="ui-widget-header">Lei's Closet</h2>
+  <h2 class="ui-widget-header"><%= @user.name %>'s Closet</h2>
   
   <div id="catalog">
     <ul >
@@ -66,26 +75,12 @@
         <% end %>
     </ul>
     </div>
-     
+ 
   </div><!--end of catalog -->
 
   <div id="add_new">
-  	<h2 class="ui-widget-header">Add new Items</h2>
-    <!--
-  	<form action="/closet/create" method="post">
-      <label>Item Name</label>
-      <input type="text" name="name"><br>
-  		<label>Category</label>
-  		<select>
-  			<option>Top</option>
-  			<option>Bottom</option>
-  			<option>Shoes</option>
-  			<option>Others</option>
-  		</select><br> 		
-		<input type="file" name="file" id="file"><br>
-		<input type="submit" name="submit" value="Submit">
-  	</form>
--->
+    <h2 class="ui-widget-header">Add new Items</h2>
+
     <div id="addForm">
       <%= simple_form_for @item, :html=>{:multipart=>true} do |i| %>
         <%= i.hidden_field :user_id, :value=>@current_user.id %>
@@ -104,27 +99,31 @@
     <ol type=none id="outfit_list">
       <li class="placeholder">Add your clothes here</li>
     </ol>
-    <form action="/outfit" method="post">
+    
+    <%= form_for([@user, @user.outfits.new]) do |f| %>
+    <!--
+    <form action="/user/[params :id]/outfits" method="post">
+    -->
       <div id="o_name">
         <label for="name">Outfit Name</label>
         <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-        <input type="hidden" name="outfit[user_id]" value="<%= @current_user.id %>" />
-        <input type="text" name="outfit[name]">
+        <input type="hidden" name="outfits[user_id]" value="<%= @current_user.id %>" />
+        <input type="text" name="outfits[name]">
+       
         <input id="save" type="submit" value="Save" name="submit">
       </div>
       <button id="submit" type="button">Add Outfit</button>
-    </form>
+    <% end %>
   </div>
 </div>
-  <div id="recent-outfit">
-    <h2 class="ui-widget-header">Recent Outfit</h2>
+
+<div id="recent-outfit">
+    <h2 class="ui-widget-header">Recent Outfits</h2>
     <div id="recent-outfitlist">
       <% @outfits.each do |f| %>
-        <p><%= link_to f.name, outfit_path(f.id) %></p>
+        <p><%= link_to f.name,  "outfits/#{f[:id]}" || outfit_path(f[:id]) %></p>
       <% end %>
     </div>
-  </div>
+</div>
 <div id="clear"></div>
-
-
 

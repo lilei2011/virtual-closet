@@ -1,36 +1,38 @@
-#topNav{
-  /*border:solid 1px #FF66CC;*/
-  background-color: #FF66CC;
-} 
-
-#tagline{
+#topNav{ 
+font-family: helveticaLTStdBoldCond,Arial,Helvetica,Verdana,Sans-serif;
+background-color:#FF66CC;
+height: 35px;
+color: #FF66CC;
+ #intro{
   float:left;
-  font-family: "Times New Roman", Times, serif;
-  font-size:20px;
+  color:#FF66CC;
+  font-size: 20px;
+  font-style:italic;
+  font-weight:bold;
+  height: 35px;
+  color: white;
+  padding:5px;
 }
-#toplist{
+  ul{
   display:inline-block;
   float:right;
   margin-right: 50px;
+  } 
 } 
-#toplist li{
-  padding:5px;
-  color:#FF66CC ;
-}
-
-#titleNav{
-  /*border:solid 1px black;*/
-}
 .clear{
   clear:both;
 }
 #title{
-  float:left;
-  color:#FF66CC;
-  font-size: 60px;
+  color: #FF66CC;
+  font-size: 50px;
   font-style:italic;
   font-weight:bold;
 }
+#desc{
+  color: blue;
+  font-size: 20px;
+  
+  }
 #image1{
   display:inline-block;
   float:right;
@@ -47,12 +49,12 @@
     margin-right: 2em;
   }
   #catalog{
-    border:solid 10px #FF9900;
+    border:solid 5px #AEB0B5;
     border-style: ridge;
     border-radius: 15px;
   }
   #add_new{
-  	border:3px #AEB0B5 solid;
+  	border:5px #AEB0B5 solid;
   	margin:5px;
     h2{
       background-color: #AEB0B5;
@@ -75,7 +77,7 @@
   #outfit {
   	width: 400px;
     height:500px; 
-    border:solid 10px #FF9900;
+    border:solid 5px #AEB0B5;
     border-style:ridge;
     border-radius: 15px;
   }
@@ -115,7 +117,9 @@ display:inline;
 }
 #recent-outfitlist
 {
-  border: 5px #FF9900 solid; 
+  border: 5px #AEB0B5 solid; 
   border-style: ridge;
+  border-style: ridge;
+  border-radius: 15px;
   padding-left: 20px;
 }

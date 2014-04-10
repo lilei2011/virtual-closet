@@ -1,10 +1,10 @@
 class ClosetController < ApplicationController
   def index
-  	 @user = User.find(current_user.id)
-  	 @items = Item.where(user_id = @user.id)
+  	 @user = current_user
+  	 @items = current_user.items
   	 @item = Item.new
-     @outfits = Outfit.where(user_id = @user.id)
-     # render :text => @current_user
+     @outfits = current_user.outfits
+      #render :text => @items
   end
 
   

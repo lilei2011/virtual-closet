@@ -1,22 +1,15 @@
 VirtualCloset::Application.routes.draw do
+  root to: 'users#new'
   match '/items', to: 'closet#create', via: :post
-  resources :users, :sessions, :items
+  resources :users
+  resources :outfits
+  resources :closet
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users do
+    resources :outfits
+  end
   
-  # get "outfit/create"
-
-  # get "outfit/edit"
-
-  # get "outfit/update"
-
-  # get "outfit/delete"
-
-  # get "closet/index"
-
-  # get "closet/new"
-
-  # get "closet/create"
-  resources :closet, :outfit
-
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

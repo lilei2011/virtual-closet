@@ -1,0 +1,24 @@
+<h1>this is user show page </h1>
+
+
+<h1>User <%= @user.id %></h1>
+
+<h2>User information</h2>
+<%= @user.name %>&nbsp;&nbsp; <%= @user.email %><br/>
+
+<h2>Outfits</h2>
+<% @user.outfits.each do |o| %>
+  <p>
+    <strong>outfit name</strong>
+    <%= o.name %>
+  </p>
+<% end %>
+
+<h2>Items</h2>
+<% @user.items.each do |i| %>
+  <p>
+    <strong>outfit name</strong>
+    <%= i.name %>
+  </p>
+<% end %>
+

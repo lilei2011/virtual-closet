@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
   	else
   		sign_in user
   		redirect_to closet_index_path
+      #redirect_to user
   		
   	end
 
